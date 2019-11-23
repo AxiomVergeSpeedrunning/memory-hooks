@@ -1,0 +1,12 @@
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\bin\Release\TrackerUI.exe.config
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\bin\Release\TrackerUI.exe
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\bin\Release\TrackerUI.pdb
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\bin\Release\TrackerLibrary.dll
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\bin\Release\TrackerLibrary.pdb
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Release\TrackerUI.csprojAssemblyReference.cache
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Release\TrackerUI.Properties.Resources.resources
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Release\TrackerUI.UI.resources
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Release\TrackerUI.csproj.GenerateResource.cache
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Release\TrackerUI.csproj.CopyComplete
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Release\TrackerUI.exe
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Release\TrackerUI.pdb
