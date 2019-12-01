@@ -56,9 +56,8 @@ namespace TrackerLibrary
             var hModules = new IntPtr[1024];
 
             uint cb = (uint)IntPtr.Size * (uint)hModules.Length;
-            uint cbNeeded;
 
-            if (!WinAPI.EnumProcessModulesEx(p.Handle, hModules, cb, out cbNeeded, LIST_MODULES_ALL))
+            if (!WinAPI.EnumProcessModulesEx(p.Handle, hModules, cb, out uint cbNeeded, LIST_MODULES_ALL))
                 throw new Win32Exception();
             uint numMods = cbNeeded / (uint)IntPtr.Size;
 
@@ -112,8 +111,7 @@ namespace TrackerLibrary
             var addr = min;
             do
             {
-                MemoryBasicInformation mbi;
-                if (WinAPI.VirtualQueryEx(process.Handle, (IntPtr)addr, out mbi, mbiSize) == (SizeT)0)
+                if (WinAPI.VirtualQueryEx(process.Handle, (IntPtr)addr, out MemoryBasicInformation mbi, mbiSize) == (SizeT)0)
                     break;
                 addr += (long)mbi.RegionSize;
 
@@ -136,8 +134,7 @@ namespace TrackerLibrary
 
         public static bool Is64Bit(this Process process)
         {
-            bool procWow64;
-            WinAPI.IsWow64Process(process.Handle, out procWow64);
+            WinAPI.IsWow64Process(process.Handle, out bool procWow64);
             if (Environment.Is64BitOperatingSystem && !procWow64)
                 return true;
             return false;
@@ -148,9 +145,8 @@ namespace TrackerLibrary
             var type = typeof(T);
             type = type.IsEnum ? Enum.GetUnderlyingType(type) : type;
 
-            val = default(T);
-            object val2;
-            if (!ReadValue(process, addr, type, out val2))
+            val = default;
+            if (!ReadValue(process, addr, type, out object val2))
                 return false;
 
             val = (T)val2;
@@ -160,11 +156,9 @@ namespace TrackerLibrary
 
         public static bool ReadValue(Process process, IntPtr addr, Type type, out object val)
         {
-            byte[] bytes;
-
             val = null;
             int size = type == typeof(bool) ? 1 : Marshal.SizeOf(type);
-            if (!ReadBytes(process, addr, size, out bytes))
+            if (!ReadBytes(process, addr, size, out byte[] bytes))
                 return false;
 
             val = ResolveToType(bytes, type);
@@ -175,10 +169,8 @@ namespace TrackerLibrary
         public static bool ReadBytes(this Process process, IntPtr addr, int count, out byte[] val)
         {
             var bytes = new byte[count];
-
-            SizeT read;
             val = null;
-            if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out read)
+            if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT read)
                 || read != (SizeT)bytes.Length)
                 return false;
 
@@ -195,10 +187,8 @@ namespace TrackerLibrary
         public static bool ReadPointer(this Process process, IntPtr addr, bool is64Bit, out IntPtr val)
         {
             var bytes = new byte[is64Bit ? 8 : 4];
-
-            SizeT read;
             val = IntPtr.Zero;
-            if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out read)
+            if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT read)
                 || read != (SizeT)bytes.Length)
                 return false;
 
@@ -234,8 +224,7 @@ namespace TrackerLibrary
         public static bool ReadString(this Process process, IntPtr addr, ReadStringType type, StringBuilder sb)
         {
             var bytes = new byte[sb.Capacity];
-            SizeT read;
-            if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out read)
+            if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT read)
                 || read != (SizeT)bytes.Length)
                 return false;
 
@@ -265,42 +254,37 @@ namespace TrackerLibrary
             return true;
         }
 
-        public static T ReadValue<T>(this Process process, IntPtr addr, T default_ = default(T)) where T : struct
+        public static T ReadValue<T>(this Process process, IntPtr addr, T default_ = default) where T : struct
         {
-            T val;
-            if (!process.ReadValue(addr, out val))
+            if (!process.ReadValue(addr, out T val))
                 val = default_;
             return val;
         }
 
         public static byte[] ReadBytes(this Process process, IntPtr addr, int count)
         {
-            byte[] bytes;
-            if (!process.ReadBytes(addr, count, out bytes))
+            if (!process.ReadBytes(addr, count, out byte[] bytes))
                 return null;
             return bytes;
         }
 
-        public static IntPtr ReadPointer(this Process process, IntPtr addr, IntPtr default_ = default(IntPtr))
+        public static IntPtr ReadPointer(this Process process, IntPtr addr, IntPtr default_ = default)
         {
-            IntPtr ptr;
-            if (!process.ReadPointer(addr, out ptr))
+            if (!process.ReadPointer(addr, out IntPtr ptr))
                 return default_;
             return ptr;
         }
 
         public static string ReadString(this Process process, IntPtr addr, int numBytes, string default_ = null)
         {
-            string str;
-            if (!process.ReadString(addr, numBytes, out str))
+            if (!process.ReadString(addr, numBytes, out string str))
                 return default_;
             return str;
         }
 
         public static string ReadString(this Process process, IntPtr addr, ReadStringType type, int numBytes, string default_ = null)
         {
-            string str;
-            if (!process.ReadString(addr, type, numBytes, out str))
+            if (!process.ReadString(addr, type, numBytes, out string str))
                 return default_;
             return str;
         }
@@ -320,8 +304,7 @@ namespace TrackerLibrary
 
         public static bool WriteBytes(this Process process, IntPtr addr, byte[] bytes)
         {
-            SizeT written;
-            if (!WinAPI.WriteProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out written)
+            if (!WinAPI.WriteProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT written)
                 || written != (SizeT)bytes.Length)
                 return false;
 
@@ -348,8 +331,7 @@ namespace TrackerLibrary
                 instruction.AddRange(BitConverter.GetBytes(offset));
             }
 
-            MemPageProtect oldProtect;
-            process.VirtualProtect(addr, jmpLen, MemPageProtect.PAGE_EXECUTE_READWRITE, out oldProtect);
+            process.VirtualProtect(addr, jmpLen, MemPageProtect.PAGE_EXECUTE_READWRITE, out MemPageProtect oldProtect);
             bool success = process.WriteBytes(addr, instruction.ToArray());
             process.VirtualProtect(addr, jmpLen, oldProtect);
 
@@ -403,9 +385,7 @@ namespace TrackerLibrary
                 if (extraBytes > 0)
                 {
                     var nops = Enumerable.Repeat((byte)0x90, extraBytes).ToArray();
-                    MemPageProtect oldProtect;
-                    if (!process.VirtualProtect(src + jmpLen, nops.Length, MemPageProtect.PAGE_EXECUTE_READWRITE,
-                        out oldProtect))
+                    if (!process.VirtualProtect(src + jmpLen, nops.Length, MemPageProtect.PAGE_EXECUTE_READWRITE, out MemPageProtect oldProtect))
                         throw new Win32Exception();
                     if (!process.WriteBytes(src + jmpLen, nops))
                         throw new Win32Exception();
@@ -492,15 +472,12 @@ namespace TrackerLibrary
 
         public static bool VirtualProtect(this Process process, IntPtr addr, int size, MemPageProtect protect)
         {
-            MemPageProtect oldProtect;
-            return WinAPI.VirtualProtectEx(process.Handle, addr, (SizeT)size, protect, out oldProtect);
+            return WinAPI.VirtualProtectEx(process.Handle, addr, (SizeT)size, protect, out MemPageProtect oldProtect);
         }
 
         public static IntPtr CreateThread(this Process process, IntPtr startAddress, IntPtr parameter)
         {
-            IntPtr threadId;
-            return WinAPI.CreateRemoteThread(process.Handle, IntPtr.Zero, (SizeT)0, startAddress, parameter, 0,
-                out threadId);
+            return WinAPI.CreateRemoteThread(process.Handle, IntPtr.Zero, (SizeT)0, startAddress, parameter, 0, out IntPtr threadId);
         }
 
         public static IntPtr CreateThread(this Process process, IntPtr startAddress)

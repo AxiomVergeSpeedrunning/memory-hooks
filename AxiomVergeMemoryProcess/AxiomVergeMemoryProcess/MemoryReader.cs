@@ -16,6 +16,12 @@ namespace TrackerLibrary
             return Pointer.Deref<int>(process);
         }
 
+        public int MemoryReadBytes(Process process, long _baseAddress, int _offsetAddress, int _deepPointerOffset1, int _deepPointerOffset2, int _deepPointerOffset3, int _deepPointerOffset4)
+        {
+            var Pointer = new DeepPointer(_baseAddress + _offsetAddress, true, _deepPointerOffset1, _deepPointerOffset2, _deepPointerOffset3, _deepPointerOffset4);
+            return Pointer.Deref<int>(process);
+        }
+
         public string MemoryReadBytesAsString(Process process, long _baseAddress, int _offsetAddress, int _deepPointerOffset1, int _deepPointerOffset2)
         {
             var Pointer = new DeepPointer(_baseAddress + _offsetAddress, true, _deepPointerOffset1, _deepPointerOffset2);
@@ -41,6 +47,7 @@ namespace TrackerLibrary
             var len = stringLen.Deref<int>(process);
             var stringArr = new DeepPointer(_baseAddress + _offsetAddress, true, _deepPointerOffset1, _deepPointerOffset2, _deepPointerOffset3, _deepPointerOffset4, _deepPointerOffset5, _deepPointerOffset7);
             var bytes = stringArr.DerefBytes(process, len * 2);
+            if (bytes == null) { return ""; }
             var result = System.Text.Encoding.Unicode.GetString(bytes);
             return result;
         }
