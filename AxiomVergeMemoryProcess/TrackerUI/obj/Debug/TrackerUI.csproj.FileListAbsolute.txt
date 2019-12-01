@@ -10,3 +10,5 @@ C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Debug\TrackerU
 C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Debug\TrackerUI.csproj.CopyComplete
 C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Debug\TrackerUI.exe
 C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\obj\Debug\TrackerUI.pdb
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\TrackerUI\bin\Debug\Newtonsoft.Json.xml
