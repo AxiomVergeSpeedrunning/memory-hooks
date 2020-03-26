@@ -1,0 +1,7 @@
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\AVSRControls\bin\Release\AVSRControls.dll
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\AVSRControls\bin\Release\AVSRControls.pdb
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\AVSRControls\obj\Release\AVSRControls.TitleBar.resources
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\AVSRControls\obj\Release\AVSRControls.csproj.GenerateResource.cache
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\AVSRControls\obj\Release\AVSRControls.dll
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\AVSRControls\obj\Release\AVSRControls.pdb
+C:\Users\VGR_T\source\repos\AxiomVergeMemoryProcess\AVSRControls\obj\Release\AVSRControls.FormPanel.resources
