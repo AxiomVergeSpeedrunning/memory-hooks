@@ -113,6 +113,7 @@ namespace TrackerLibrary
         public double EffectiveFrames { get; set; }
         public string GameDifficulty { get; set; }
         public int ItemCount { get; set; }
+        public int TrueItemCount { get; set; }
         public int ItemPercent { get; set; }
         public int ScreenCount { get; set; }
         public int ScreenPercent { get; set; }
@@ -140,7 +141,7 @@ namespace TrackerLibrary
         public int pCount = 0;
         readonly int[] MaxCounts = { 125, 982 };
         readonly string[] areas = { "Unknown", "Eribu", "Absu", "Zi", "Kur", "Indi", "Ukkin-Na", "Edin", "E-Kur-Mah", "Mar-Uru" };
-
+        public string PItems = "";
         #region "Item Location Database"
         public enum Area
         {
@@ -184,7 +185,16 @@ namespace TrackerLibrary
             { "HealthNode7", (int)Area.Edin },
             { "HealthNode8", (int)Area.MarUru },
             { "HealthNode9", (int)Area.Eribu },
+            { "HealthNode10", (int)Area.None },
             { "HealthNodeFragment1", (int)Area.Absu },
+            { "HealthNodeFragment2", (int)Area.Eribu },
+            { "HealthNodeFragment3", (int)Area.Absu },
+            { "HealthNodeFragment4", (int)Area.Absu },
+            { "HealthNodeFragment5", (int)Area.Zi },
+            { "HealthNodeFragment6", (int)Area.Absu },
+            { "HealthNodeFragment7", (int)Area.Zi },
+            { "HealthNodeFragment8", (int)Area.Kur },
+            { "HealthNodeFragment9", (int)Area.Kur },
             { "HealthNodeFragment10", (int)Area.Kur },
             { "HealthNodeFragment11", (int)Area.Kur },
             { "HealthNodeFragment12", (int)Area.Kur },
@@ -195,15 +205,12 @@ namespace TrackerLibrary
             { "HealthNodeFragment17", (int)Area.EKurMah },
             { "HealthNodeFragment18", (int)Area.UkkinNa },
             { "HealthNodeFragment19", (int)Area.Edin },
-            { "HealthNodeFragment2", (int)Area.Eribu },
             { "HealthNodeFragment20", (int)Area.Edin },
-            { "HealthNodeFragment3", (int)Area.Absu },
-            { "HealthNodeFragment4", (int)Area.Absu },
-            { "HealthNodeFragment5", (int)Area.Zi },
-            { "HealthNodeFragment6", (int)Area.Absu },
-            { "HealthNodeFragment7", (int)Area.Zi },
-            { "HealthNodeFragment8", (int)Area.Kur },
-            { "HealthNodeFragment9", (int)Area.Kur },
+            { "HealthNodeFragment21", (int)Area.None },
+            { "HealthNodeFragment22", (int)Area.None },
+            { "HealthNodeFragment23", (int)Area.None },
+            { "HealthNodeFragment24", (int)Area.None },
+            { "HealthNodeFragment25", (int)Area.None },
             { "HeatSeeker", (int)Area.None },
             { "HighJump", (int)Area.Kur },
             { "InertialPulse", (int)Area.Absu },
@@ -212,6 +219,14 @@ namespace TrackerLibrary
             { "LightningGun", (int)Area.Eribu },
             { "MultiDisruptor", (int)Area.Eribu },
             { "Note1", (int)Area.EKurMah },
+            { "Note3", (int)Area.EKurMah },
+            { "Note4", (int)Area.Edin },
+            { "Note5", (int)Area.Edin },
+            { "Note6", (int)Area.MarUru },
+            { "Note7", (int)Area.Absu },
+            { "Note8", (int)Area.UkkinNa },
+            { "Note9", (int)Area.Indi },
+            { "Note2", (int)Area.Eribu },
             { "Note10", (int)Area.Zi },
             { "Note11", (int)Area.EKurMah },
             { "Note12", (int)Area.Kur },
@@ -222,7 +237,6 @@ namespace TrackerLibrary
             { "Note17", (int)Area.Kur },
             { "Note18", (int)Area.Edin },
             { "Note19", (int)Area.Zi },
-            { "Note2", (int)Area.Eribu },
             { "Note20", (int)Area.Zi },
             { "Note21", (int)Area.MarUru },
             { "Note22", (int)Area.UkkinNa },
@@ -232,13 +246,6 @@ namespace TrackerLibrary
             { "Note26", (int)Area.MarUru },
             { "Note27", (int)Area.Edin },
             { "Note28", (int)Area.Absu },
-            { "Note3", (int)Area.EKurMah },
-            { "Note4", (int)Area.Edin },
-            { "Note5", (int)Area.Edin },
-            { "Note6", (int)Area.MarUru },
-            { "Note7", (int)Area.Absu },
-            { "Note8", (int)Area.UkkinNa },
-            { "Note9", (int)Area.Indi },
             { "Nova", (int)Area.Eribu },
             { "PasswordTool", (int)Area.Zi },
             { "PowerNode1", (int)Area.Eribu },
@@ -247,7 +254,16 @@ namespace TrackerLibrary
             { "PowerNode4", (int)Area.Kur },
             { "PowerNode5", (int)Area.Edin },
             { "PowerNode6", (int)Area.EKurMah },
+            { "PowerNode7", (int)Area.None },
             { "PowerNodeFragment1", (int)Area.Zi },
+            { "PowerNodeFragment2", (int)Area.Eribu },
+            { "PowerNodeFragment3", (int)Area.Absu },
+            { "PowerNodeFragment4", (int)Area.Absu },
+            { "PowerNodeFragment5", (int)Area.Absu },
+            { "PowerNodeFragment6", (int)Area.Absu },
+            { "PowerNodeFragment7", (int)Area.Absu },
+            { "PowerNodeFragment8", (int)Area.Zi },
+            { "PowerNodeFragment9", (int)Area.Absu },
             { "PowerNodeFragment10", (int)Area.UkkinNa },
             { "PowerNodeFragment11", (int)Area.MarUru },
             { "PowerNodeFragment12", (int)Area.MarUru },
@@ -257,14 +273,18 @@ namespace TrackerLibrary
             { "PowerNodeFragment16", (int)Area.Eribu },
             { "PowerNodeFragment17", (int)Area.Edin },
             { "PowerNodeFragment18", (int)Area.EKurMah },
-            { "PowerNodeFragment2", (int)Area.Eribu },
-            { "PowerNodeFragment3", (int)Area.Absu },
-            { "PowerNodeFragment4", (int)Area.Absu },
-            { "PowerNodeFragment5", (int)Area.Absu },
-            { "PowerNodeFragment6", (int)Area.Absu },
-            { "PowerNodeFragment7", (int)Area.Absu },
-            { "PowerNodeFragment8", (int)Area.Zi },
-            { "PowerNodeFragment9", (int)Area.Absu },
+            { "PowerNodeFragment19", (int)Area.None },
+            { "PowerNodeFragment20", (int)Area.None },
+            { "PowerNodeFragment21", (int)Area.None },
+            { "PowerNodeFragment22", (int)Area.None },
+            { "PowerNodeFragment23", (int)Area.None },
+            { "PowerNodeFragment24", (int)Area.None },
+            { "PowerNodeFragment25", (int)Area.None },
+            { "PowerNodeFragment26", (int)Area.None },
+            { "PowerNodeFragment27", (int)Area.None },
+            { "PowerNodeFragment28", (int)Area.None },
+            { "PowerNodeFragment29", (int)Area.None },
+            { "PowerNodeFragment30", (int)Area.None },
             { "RangeNode1", (int)Area.Absu },
             { "RangeNode2", (int)Area.Zi },
             { "RangeNode3", (int)Area.Edin },
@@ -577,7 +597,7 @@ namespace TrackerLibrary
         public bool GlitchBomb { get; set; }
         public bool GlitchTeleport { get; set; }
         public bool Grapple { get; set; }
-        public bool Heatseeker { get; set; }
+        public bool HeatSeeker { get; set; }
         public bool HighJump { get; set; }
         public bool InertialPulse { get; set; }
         public bool IonBeam { get; set; }
@@ -613,7 +633,7 @@ namespace TrackerLibrary
         #region "CONNECT TO GAME PROCESS"
         public AxiomVergeTracker(){
         }
-        public void ConnectToGameProcess(string _processName)
+        public void ConnectToGameProcess(string _processName, bool debug)
         {
             bool vanilla = (_processName == "AxiomVerge") ? true : false;
             GameProcess = Process.GetProcessesByName(_processName).FirstOrDefault();
@@ -636,6 +656,7 @@ namespace TrackerLibrary
                 }
             }
             if (vanilla) { OffsetAddress = steam ? 0x144 : 0xB0; }
+            else if (debug) { OffsetAddress = vanilla ? 0x70 : 0x98; }
             else { OffsetAddress = steam ? 0x50 : 0x24; }
         }
         #endregion
@@ -671,7 +692,7 @@ namespace TrackerLibrary
                 GlitchBomb = glitchbomb.isAcquired,
                 GlitchTeleport = glitchteleport.isAcquired,
                 Grapple = grapple.isAcquired,
-                Heatseeker = heatseeker.isAcquired,
+                HeatSeeker = heatseeker.isAcquired,
                 HighJump = highjump.isAcquired,
                 InertialPulse = inertialpulse.isAcquired,
                 IonBeam = ionbeam.isAcquired,
@@ -714,7 +735,12 @@ namespace TrackerLibrary
             };
 
             var json = new JavaScriptSerializer().Serialize(_stats);
-            HttpPost(_token, json);
+            if (PItems.Length == json.Length && PItems == json) { return; } 
+            else
+            {
+                PItems = json;
+                HttpPost(_token, json);
+            }
         }
 
         public async void HttpPost(string _token, string json)
@@ -747,6 +773,7 @@ namespace TrackerLibrary
             AreaName = mr.MemoryReadString(GameProcess, BaseAddress, OffsetAddress, mCurrentSave, mCurrentAutoMapName, vStringLength, vStringArray);
             AreaNumber = Convert.ToInt32(AreaName.Substring(AreaName.Length - 1, 1));
             ItemCount = mr.MemoryReadBytes(GameProcess, BaseAddress, OffsetAddress, mCurrentSave, mItemCount);
+            TrueItemCount = mr.MemoryReadBytes(GameProcess, BaseAddress, OffsetAddress, mCurrentSave, mItems, vCount);
             ItemPercent = GetPercentage(ItemCount, MaxCounts[0]);
             ScreenCount = mr.MemoryReadBytes(GameProcess, BaseAddress, OffsetAddress, mCurrentSave, mScreenCount);
             ScreenPercent = GetPercentage(ScreenCount, MaxCounts[1]);
@@ -758,12 +785,12 @@ namespace TrackerLibrary
             CreaturesGlitched = mr.MemoryReadBytes(GameProcess, BaseAddress, OffsetAddress, mCurrentSave, mCreaturesGlitched, vCount);
             NumDeaths = mr.MemoryReadBytes(GameProcess, BaseAddress, OffsetAddress, mCurrentSave, mNumDeaths);
             InGameAreaName = GetAreaName();
-            GetItemCounts(ItemCount);
+            GetItemCounts(TrueItemCount);
             CurrentAreaItemPercent = GetPercentage(ItemsCounts[AreaNumber], totalItemsCounts[AreaNumber]);
             GetAutoMaps();
             CurrentAreaScreenPercent = GetPercentage(ScreenCounts[AreaNumber], totalScreenCounts[AreaNumber]);
-            GetItems(ItemCount);
-            int[] MiscCounts = GetMisc(ItemCount);
+            GetItems(TrueItemCount);
+            int[] MiscCounts = GetMisc(TrueItemCount);
             HNodeCount = MiscCounts[0];
             PNodeCount = MiscCounts[1];
             HNodeFCount = MiscCounts[2];
@@ -771,7 +798,7 @@ namespace TrackerLibrary
             NoteCount = MiscCounts[4];
             SizeNodeCount = MiscCounts[5];
             RangeNodeCount = MiscCounts[6];
-            LastItem = GetLastItem(ItemCount);
+            LastItem = GetLastItem(TrueItemCount);
         }
 
         void GetItemCounts(int _itemCount)
@@ -852,6 +879,7 @@ namespace TrackerLibrary
                     case "HealthNode7":
                     case "HealthNode8":
                     case "HealthNode9":
+                    case "HealthNode10":
                         _MiscCount[0]++;
                         break;
                     case "PowerNode1":
@@ -860,6 +888,7 @@ namespace TrackerLibrary
                     case "PowerNode4":
                     case "PowerNode5":
                     case "PowerNode6":
+                    case "PowerNode7":
                         _MiscCount[1]++;
                         break;
                     case "HealthNodeFragment1":
@@ -882,6 +911,11 @@ namespace TrackerLibrary
                     case "HealthNodeFragment18":
                     case "HealthNodeFragment19":
                     case "HealthNodeFragment20":
+                    case "HealthNodeFragment21":
+                    case "HealthNodeFragment22":
+                    case "HealthNodeFragment23":
+                    case "HealthNodeFragment24":
+                    case "HealthNodeFragment25":
                         _MiscCount[2]++;
                         break;
                     case "PowerNodeFragment1":
@@ -902,6 +936,18 @@ namespace TrackerLibrary
                     case "PowerNodeFragment16":
                     case "PowerNodeFragment17":
                     case "PowerNodeFragment18":
+                    case "PowerNodeFragment19":
+                    case "PowerNodeFragment20":
+                    case "PowerNodeFragment21":
+                    case "PowerNodeFragment22":
+                    case "PowerNodeFragment23":
+                    case "PowerNodeFragment24":
+                    case "PowerNodeFragment25":
+                    case "PowerNodeFragment26":
+                    case "PowerNodeFragment27":
+                    case "PowerNodeFragment28":
+                    case "PowerNodeFragment29":
+                    case "PowerNodeFragment30":
                         _MiscCount[3]++;
                         break;
                     case "Note1":
@@ -955,7 +1001,7 @@ namespace TrackerLibrary
 
         public string GetLastItem(int _itemCount)
         {
-            int lastPosition = (_itemCount <= 1) ? 0x8 : 0x8 + (0x4 * (_itemCount - 1));
+            int lastPosition = 0x8 + (0x4 * (_itemCount - 1));
             var item = mr.MemoryReadListItemString(GameProcess, BaseAddress, OffsetAddress, mCurrentSave, mItems, vList, lastPosition, vInfo, vStringLength, vStringArray);
             switch (item)
             {
@@ -969,6 +1015,7 @@ namespace TrackerLibrary
                 case "HealthNode7":
                 case "HealthNode8":
                 case "HealthNode9":
+                case "HealthNode10":
                     return "HealthNode";
                 case "HealthNodeFragment1":
                 case "HealthNodeFragment2":
@@ -990,6 +1037,11 @@ namespace TrackerLibrary
                 case "HealthNodeFragment18":
                 case "HealthNodeFragment19":
                 case "HealthNodeFragment20":
+                case "HealthNodeFragment21":
+                case "HealthNodeFragment22":
+                case "HealthNodeFragment23":
+                case "HealthNodeFragment24":
+                case "HealthNodeFragment25":
                     return "HealthNodeFragment";
                 #endregion
                 #region "Power Nodes"
@@ -999,6 +1051,7 @@ namespace TrackerLibrary
                 case "PowerNode4":
                 case "PowerNode5":
                 case "PowerNode6":
+                case "PowerNode7":
                     return "PowerNode";
                 case "PowerNodeFragment1":
                 case "PowerNodeFragment2":
@@ -1018,6 +1071,18 @@ namespace TrackerLibrary
                 case "PowerNodeFragment16":
                 case "PowerNodeFragment17":
                 case "PowerNodeFragment18":
+                case "PowerNodeFragment19":
+                case "PowerNodeFragment20":
+                case "PowerNodeFragment21":
+                case "PowerNodeFragment22":
+                case "PowerNodeFragment23":
+                case "PowerNodeFragment24":
+                case "PowerNodeFragment25":
+                case "PowerNodeFragment26":
+                case "PowerNodeFragment27":
+                case "PowerNodeFragment28":
+                case "PowerNodeFragment29":
+                case "PowerNodeFragment30":
                     return "PowerNodeFragment";
                 #endregion
                 #region "Size Nodes"
