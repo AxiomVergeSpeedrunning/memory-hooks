@@ -1,0 +1,316 @@
+"Start Eribu"
+Items Count: 16
+Item to Collect: 7
+Items Collected: 7
+
+Axiom Disruptor
+Nova
+(Save Warp To Start)
+
+//Xedur
+
+Drill
+PowerNode1
+HealthNode1
+
+
+"Enter Absu"
+Items Count: 25
+Item to Collect: 4
+Items Collected: 4
+
+Kilver
+
+//Telal
+
+Address Disruptor 1
+HealthNode2
+PowerNode2
+
+"Enter Zi"
+Items Count: 15
+Item to Collect: 0
+Items Collected: 0
+
+"Enter Kur"
+Items Count: 22
+Item to Collect: 1
+Items Collected: 1
+
+High Jump
+
+"Enter Zi"
+Items Count: 15
+Item to Collect: 1 or 2
+Items Collected: 1 or 2
+
+//Uruku
+
+Labcoat
+HealthNode3 (Optional) "We come back later for other item behind it so its a matter of how comfortable you are early game"
+
+"Enter Kur"
+Items Count: 22
+Item to Collect: 5
+Items Collected: 6
+
+PowerNode3
+Drone
+Address Disruptor 2
+Passcode Tool
+Note1
+
+Save Warp To Start
+
+"Enter Ukkin-Na"
+Items Count: 11
+Item to Collect: 1 or 2
+Items Collected: 1 or 2
+
+//Vision
+
+HealthNode4 (Optional) "We come back later for other items around it so its a matter of how comfortable you are mid game"
+(Save Warp To Ukkin-Na Checkpoint)
+Trenchcoat
+(Save Warp To Ukkin-Na Checkpoint)
+
+"Enter Indi"
+Items Count: 2
+Item to Collect: 0
+Items Collected: 0
+
+"Enter Absu"
+Items Count: 25
+Item to Collect: 1
+Items Collected: 5
+
+HealthNodeFragment1
+(Save Warp To Ukkin-Na Checkpoint)
+
+"Enter Edin"
+Items Count: 16
+Item to Collect: 5
+Items Collected: 5
+
+Note2
+
+//Ukhu
+
+Drone Teleport
+Note3
+HealthNode5
+PowerNodeFragment1
+
+"Enter Indi"
+Items Count: 2
+Item to Collect: 1
+Items Collected: 1
+Note4
+
+"Enter Kur"
+Items Count: 22
+Item to Collect: 6
+Items Collected: 12
+
+"Enter Zi Set Drone Poisition"
+"Enter Kur Void Warp to Grapple"
+PowerNode4
+Grapple
+HealthNodeFragment2
+HealthNode6
+Extended Launch
+Note5
+
+"Enter E-Kur-Mah"
+Items Count: 9
+Item to Collect: 9
+Items Collected: 9
+
+Note6
+Sudran Key
+Note7
+PowerNode5
+(Save Before Green Hell)
+Quantum Variegator (ISKART-EHANZU)
+HealthNodeFragment3
+Red Coat
+PowerNodeFragment2
+(Save Warp to Green Hell Save)
+Note8 (100% Items E-Kur-Mah)
+
+"Enter Kur" (100% Map E-Kur-Mah)
+Items Count: 22
+Item to Collect: 10
+Items Collected: 22
+
+//Gir-Tab
+
+HealthNodeFragment4
+Hypo-Atomizer
+(Save Before Ion Beam)
+Ion Beam
+HealthNodeFragment5
+Note9
+PowerNodeFragment3
+Note10
+HealthNodeFragment6
+Reflector
+(Save Warp to Ion Beam Save)
+Firewall
+HealthNodeFragment7
+Tether Charged (100% Items Kur)
+
+"Enter Indi" (100% Map Kur)
+Items Count: 2
+Item to Collect: 0
+Items Collected: 1
+
+(Clear Bottom of Indi and don't forget to save at Edin)
+
+(Save Warp to Edin)
+Items Count: 16
+Item to Collect: 11
+Items Collected: 16
+
+Address Bombs
+PowerNode6
+HealthNode7
+
+(Save Warp to Edin)
+
+//Clone
+
+Distortion Field
+HealthNodeFragment8
+Note11
+Note12
+RangeNode1
+Shards
+Stimulant Pink
+HealthNodeFragment9 (100% Items Edin)
+
+"Enter Ukkin-Na" (100% Map Edin)
+Items Count: 11
+Item to Collect: 0
+Items Collected: 1 or 2
+
+"Enter Indi"
+Items Count: 2
+Item to Collect: 1
+Items Collected: 2
+
+Note13 (100% Items Indi)
+
+"Enter Eribu"
+Items Count: 16
+Item to Collect: 12
+Items Collected: 16
+
+PowerNodeFragment4
+Save at Start Location
+Note14
+HealthNodeFragment10
+HealthNodeFragment11 (Slug)
+Flamethrower
+Save Warp to Start
+Drone Zip to (IKKIBU-LABIRU)
+PowerNodeFragment5
+Multi-Disruptor
+SizeNode1
+HealthNode8
+Save Warp to Start
+Lightning Gun
+HealthNodeFragment12
+Orbital Discharge(100% Items Eribu)
+
+"Enter Absu" (100% Map Eribu)
+Items Count: 25
+Item to Collect: 20
+Items Collected: 25
+
+HealthNodeFragment13
+PowerNodeFragment6
+Note15
+Data Bomb
+PowerNodeFragment7
+PowerNodeFragment8
+PowerNodeFragment9
+PowerNodeFragment10
+HealthNodeFragment14
+RangeNode2
+Note16
+Note17
+Note18
+SizeNode2
+Save Absu next to SizeNode2
+PowerNodeFragment11
+Save Warp to SizeNode Save
+Note19
+RangeNode3
+Note20
+HealthNodeFragment15
+Inertial Pulse (100% Items Absu)
+
+"Enter Zi" (100% Map Absu)
+Items Count: 15
+Item to Collect: 11 or 12
+Items Collected: 15
+
+RangeNode4
+Stimulant Red
+HealthNodeFragment16
+PowerNodeFragment12
+SizeNode3
+HealthNodeFragment17
+HealthNodeFragment18
+Note20
+HealthNode3 (This is second time we pass this node by Uruku so we can grab it now if we haven't)
+PowerNodeFragment13
+Save Zi Outside Uruku's Room
+Note12
+Voranj (100% Items Zi)
+Save Warp Zi
+
+"Enter Indi" (100% Map Zi)
+Items Count: 2
+Item to Collect: 0
+Items Collected: 2
+
+"Enter Ukkin-Na" (100% Map Indi)
+Items Count: 11
+Item to Collect: 9 or 10
+Items Collected: 11
+
+PowerNodeFragment14
+Note21
+PowerNodeFragment15
+PowerNodeFragment16
+Save Before Vision Room
+Turbine Pulse
+HealthNodeFragment19
+HealthNode4 (this is again the second time we come across an optional item we could have skipped grab now if we haven't)
+Note22
+Note23
+HealthNodeFragment20 (100% Items Ukkin-Na)
+Save Warp to Vision Save
+
+"Enter Mar-Uru" (100% Items Ukkin-Na)
+Items Count: 8
+Item to Collect: 8
+Items Collected: 8
+
+//Sentinel
+
+HealthNode9
+PowerNodeFragment17
+Note24
+PowerNodeFragment18
+SizeNode4
+
+//Xedur Hul
+
+Note25
+Reverse Slicer
+Note26 (100% Items Mar-Uru)
+
+//Athetos (100% Items Map and Bosses)
